@@ -1,0 +1,15 @@
+# 1. Usamos una versión oficial y sencilla de Python
+FROM python:3.10
+
+# 2. Creamos una carpeta de trabajo dentro del contenedor
+WORKDIR /app
+
+# 3. Copiamos e instalamos las librerías necesarias
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# 4. Copiamos nuestro código al contenedor
+COPY . .
+
+# 5. Encendemos la API
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
